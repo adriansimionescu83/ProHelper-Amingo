@@ -3,29 +3,31 @@ const Schema = mongoose.Schema;
 
 const TestimonialSchema = new Schema(
     {
-        customer:{
+ /*       customer:{
             type: Schema.Types.ObjectId, 
             ref: 'customer',
-            required: true
+            required: false
         }, 
         worker:{
             type: Schema.Types.ObjectId, 
             ref: 'worker',
-            required: true
+            required: false
         },
         order:{
             type: Schema.Types.ObjectId, 
             ref: 'order',
             required: false
         },
+        */
         description:{
-            type: String, 
-            required: true
+            type: String
         },
-        date:{
-            type: Date,
-            default: Date.now
-        }, 
+        image:{
+            type: String
+        },
+        title:{
+            type: String
+        } 
     }
 )
 

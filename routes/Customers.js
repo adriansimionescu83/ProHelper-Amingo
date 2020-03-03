@@ -69,6 +69,24 @@ router.post(
             }
         })
     }
-)
+);
+
+
+router.get(
+    '/all',// http://www.myapp.com/customers/all
+    (req, res)=>{
+        customerModel
+        .find()
+        .then((results)=>{
+            res.json(
+                {
+                    msg:'Here are your customers', 
+                    results: results
+                }
+            );
+        })   
+    }
+);
+
 
 module.exports = router;

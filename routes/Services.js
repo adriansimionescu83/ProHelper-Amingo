@@ -23,20 +23,17 @@ router.post(
 router.get(
     '/all',// http://www.myapp.com/order/all
     (req, res)=>{
-
         ServiceModel
         .find()
         .then((results)=>{
             res.json(
                 {
-                    msg:'Here are your orders', 
+                    msg:'Here are your services', 
                     results: results
                 }
             );
         })   
     }
 );
-
-
 
 module.exports = router;

@@ -6,11 +6,9 @@ router.post(
     '/new',
     (req, res)=>{
         const formdata = {
-            customer: req.body.customer,
-            worker: req.body.worker,
-            order: req.body.order,
-            date: req.body.date,
+            title: req.body.title,
             description: req.body.description,
+            image: req.body.image              
             }
         const newTestimonialModel = new TestimonialModel(formdata);
         newTestimonialModel.save();
@@ -21,13 +19,12 @@ router.post(
 router.get(
     '/all',// http://www.myapp.com/testimonial/all
     (req, res)=>{
-
         TestimonialModel
         .find()
         .then((results)=>{
             res.json(
                 {
-                    msg:'Here are your testimonials', 
+                    msg:'Here are your Testimonials', 
                     results: results
                 }
             );

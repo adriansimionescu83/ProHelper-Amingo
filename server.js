@@ -18,7 +18,7 @@ const WorkerModel = require('./models/Workers.js');
 const CustomerRoutes = require('./routes/Customers.js');
 const OrderRoutes = require('./routes/Orders.js');
 const ServiceRoutes = require('./routes/Services.js');
-const TestimonialRoutes = require('./routes/Services.js');
+const TestimonialRoutes = require('./routes/Testimonials.js');
 const WorkerRoutes = require('./routes/Workers.js');
 const cors = require ('cors');
 
