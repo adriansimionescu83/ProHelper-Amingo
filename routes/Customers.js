@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const customerModel = require('../models/Customers.js');
+const jwt = require ('jsonwebtoken');
+const secret = 'theSecret100!'; //process.env.SECRET needs to be changed
 
 router.post(
     '/register', // http://www.myapp.com/customer/register
@@ -57,15 +59,35 @@ router.post(
             // Step 2. If exists, check password
             if(isMatch.length>0) {
                 // Step 3. Compare their password with database
-                // Step 4. Generate JWT
-                // Step 5. Send it to the client
-                // Step 3b.
+                bcrypt
+                .compare(formdata.password, isMatch[0].password)
+                .then(
+                   (passwordMatch)=>{
+                       if(passwordMatch){
+                        const payload = {
+                            id: isMatch[0].id,
+                            email: isMatch[0].email
+                        }
+                        // Step 4. Generate JWT
+                        jwt.sign(
+                            payload,
+                            secret,
+                            (err, theJWT)=>{
+                    // Step 5. Send it to the client
+                                res.json({token: theJWT})
+                            }
+                        )
+                    }else{
+                        res.send('Please check email and password')
+                    }
+                }
+                )
                     // Step 6. Exit 
-                res.send('Email found')
+
             }
             // Step 2.b If use doesn't exist, exit
             else {
-                res.send('Please check email & password')
+                res.send('Please check email and password')
             }
         })
     }
